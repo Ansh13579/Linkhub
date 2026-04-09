@@ -146,7 +146,6 @@ export default function AnalyticsPage() {
                       className={styles.heatmapCell}
                       style={{
                         background: `rgba(124,106,255,${0.1 + intensity * 0.85})`,
-                        title: `${item.label}: ${item.clicks} clicks`,
                       }}
                       title={`${item.label}: ${item.clicks} clicks`}
                     >
