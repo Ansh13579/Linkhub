@@ -90,6 +90,51 @@ export default function SettingsPage() {
     setSaving(false);
   }
 
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Image too large. Max 5MB.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_SIZE = 256;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_SIZE) {
+            height *= MAX_SIZE / width;
+            width = MAX_SIZE;
+          }
+        } else {
+          if (height > MAX_SIZE) {
+            width *= MAX_SIZE / height;
+            height = MAX_SIZE;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0, width, height);
+        
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        setProfile((p: any) => ({ ...p, avatar_url: dataUrl }));
+      };
+      if (event.target?.result) img.src = event.target.result as string;
+    };
+    reader.readAsDataURL(file);
+    // Reset file input
+    e.target.value = '';
+  }
+
   if (loading) return <div style={{ padding: 40 }}><div className="skeleton" style={{ height: 400 }} /></div>;
 
   const previewBg = theme?.background_type === 'gradient' ? theme.background_value : theme?.background_color;
@@ -235,7 +280,14 @@ export default function SettingsPage() {
                   <span style={{ fontSize: '0.75rem', color: 'var(--dash-text-muted)' }}>{(profile.bio || '').length}/160</span>
                 </div>
                 <div className="form-group">
-                  <label className="form-label" htmlFor="profile-avatar">Avatar URL</label>
+                  <label className="form-label" htmlFor="profile-avatar">Avatar Configuration</label>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 8 }}>
+                    <label className="btn" style={{ cursor: 'pointer', background: 'var(--dash-card)', border: '1px solid var(--dash-border)', padding: '8px 16px', borderRadius: 8, fontSize: '0.875rem' }}>
+                      <input type="file" accept="image/jpeg, image/png, image/webp" style={{ display: 'none' }} onChange={handleImageUpload} />
+                      📸 Upload Image
+                    </label>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--dash-text-muted)' }}>OR link from URL below:</span>
+                  </div>
                   <input id="profile-avatar" type="text" className="form-input" value={profile.avatar_url} onChange={e => setProfile((p: any) => ({ ...p, avatar_url: e.target.value }))} placeholder="https://..." />
                 </div>
                 <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '13px' }} onClick={saveProfile} disabled={saving}>
