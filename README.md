@@ -97,6 +97,7 @@ This will generate several demo accounts (e.g., `alex@linkhub.dev`, `sarah@linkh
 
 ## 🚢 Deployment Overview
 
-- **Frontend:** Optimized for Vercel. Set the Root Directory to `apps/frontend`.
-- **Backend:** Designed for standard container hosting (Render, Railway, Heroku). Set the Root Directory to `apps/backend`.
-- **Database:** Supabase, Neon, or any PostgreSQL hosting provider.
+- **Live Production URL:** [https://linkhub-frontend-gsr6-git-main-anshs-projects-5c15174e.vercel.app](https://linkhub-frontend-gsr6-git-main-anshs-projects-5c15174e.vercel.app)
+- **Frontend Infrastructure:** Hosted globally on Vercel
+- **Backend Infrastructure:** Node.js Web Web Service running on Render
+- **Database:** Fully isolated PostgreSQL hosted on Neon
