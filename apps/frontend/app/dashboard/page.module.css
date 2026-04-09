@@ -1,0 +1,197 @@
+.page { display: flex; flex-direction: column; gap: 24px; }
+
+/* ── Welcome ────────────────────────────────────────── */
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.welcomeTitle {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--dash-text);
+  letter-spacing: -0.02em;
+}
+.welcomeSlug {
+  font-size: 0.875rem;
+  color: var(--dash-text-muted);
+  margin-top: 4px;
+}
+.slugLink {
+  color: #a78bfa;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.slugLink:hover { color: #c4b5fd; }
+
+/* ── Stats grid ─────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.statGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.statIcon { font-size: 1.25rem; }
+.statLabel { font-size: 0.8125rem; font-weight: 600; color: var(--dash-text-muted); }
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  word-break: break-word;
+}
+.statSub { font-size: 0.75rem; color: var(--dash-text-muted); margin-top: 6px; }
+
+/* ── 2-column grid ──────────────────────────────────── */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Card ───────────────────────────────────────────── */
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dash-text);
+  margin-bottom: 16px;
+}
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cardHeader .cardTitle { margin-bottom: 0; }
+
+/* ── Quick actions ──────────────────────────────────── */
+.quickActions { display: flex; flex-direction: column; gap: 4px; margin-top: -4px; }
+
+.quickAction {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+  color: var(--dash-text);
+}
+.quickAction:hover {
+  background: rgba(124,106,255,0.08);
+}
+
+.qaIcon { font-size: 1.35rem; width: 28px; text-align: center; flex-shrink: 0; }
+.qaLabel { font-size: 0.9rem; font-weight: 600; color: var(--dash-text); }
+.qaDesc { font-size: 0.775rem; color: var(--dash-text-muted); margin-top: 2px; }
+.qaArrow { margin-left: auto; color: var(--dash-text-muted); transition: transform 0.2s; }
+.quickAction:hover .qaArrow { transform: translateX(4px); color: #a78bfa; }
+
+/* ── Week trend ─────────────────────────────────────── */
+.trendWrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-top: 8px;
+}
+.trendBar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 6px;
+  position: relative;
+}
+.trendBarFill {
+  width: 100%;
+  background: linear-gradient(to top, #7c3aed, #a78bfa);
+  border-radius: 6px 6px 4px 4px;
+  min-height: 4px;
+  transition: height 0.5s ease;
+  position: relative;
+  cursor: pointer;
+}
+.trendBarFill:hover { filter: brightness(1.2); }
+.trendTooltip {
+  display: none;
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.trendBarFill:hover .trendTooltip { display: block; }
+.trendLabel { font-size: 0.7rem; color: var(--dash-text-muted); }
+.trendEmpty {
+  font-size: 0.875rem;
+  color: var(--dash-text-muted);
+  padding: 32px 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Links list ─────────────────────────────────────── */
+.linksList { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.linkIcon { font-size: 1.25rem; width: 28px; text-align: center; flex-shrink: 0; }
+.linkInfo { flex: 1; min-width: 0; }
+.linkTitle { font-size: 0.875rem; font-weight: 600; color: var(--dash-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.linkUrl { font-size: 0.75rem; color: var(--dash-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.linkClicks { font-size: 0.8rem; color: var(--dash-text-muted); white-space: nowrap; }
+
+/* ── Empty state ─────────────────────────────────────── */
+.emptyLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--dash-text-muted);
+}
+.emptyLinks h3 { font-size: 1.125rem; font-weight: 700; color: var(--dash-text); }
+.emptyLinks p { font-size: 0.9rem; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .grid2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+  .statValue { font-size: 1.4rem; }
+  .welcome { flex-direction: column; align-items: flex-start; }
+}

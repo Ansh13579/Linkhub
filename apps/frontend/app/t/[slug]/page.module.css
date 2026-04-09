@@ -1,0 +1,191 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  /* Background is set dynamically via JS */
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+.ambientGlow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+  padding: 48px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  animation: fadeInDown 0.6s ease both;
+}
+
+.avatarWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 4px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--card);
+  display: block;
+}
+
+.avatarRing {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+
+.name {
+  font-size: 1.625rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.bio {
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--text) 65%, transparent);
+  text-align: center;
+  line-height: 1.65;
+  max-width: 380px;
+}
+
+.poweredBy {
+  margin-top: 4px;
+}
+.poweredByLink {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--text) 40%, transparent);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.poweredByLink:hover {
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+/* ── Links ──────────────────────────────────────────────── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Animate each link in sequence */
+:global(.link-btn) {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.linkIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+.linkText {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.9375rem;
+}
+
+.linkArrow {
+  font-size: 1rem;
+  opacity: 0.5;
+  transition: opacity 0.2s, transform 0.2s;
+}
+:global(.link-btn):hover .linkArrow {
+  opacity: 0.9;
+  transform: translate(2px, -2px);
+}
+
+.linkLoading {
+  font-size: 0.875rem;
+  animation: spin 1s linear infinite;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  color: color-mix(in srgb, var(--text) 40%, transparent);
+  font-size: 0.9375rem;
+}
+.emptyState span { font-size: 2.5rem; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  margin-top: 48px;
+  text-align: center;
+}
+.footerLink {
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--text) 35%, transparent);
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.footerLink:hover {
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.08); opacity: 0.3; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .container { padding: 40px 16px 60px; }
+  .name { font-size: 1.4rem; }
+  .bio { font-size: 0.875rem; }
+}

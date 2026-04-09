@@ -1,0 +1,224 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.title { font-size: 1.625rem; font-weight: 800; color: var(--dash-text); letter-spacing: -0.02em; }
+.subtitle { font-size: 0.875rem; color: var(--dash-text-muted); margin-top: 4px; }
+
+/* ── Drag hint ───────────────────────────────────────── */
+.dragHint {
+  font-size: 0.8125rem;
+  color: var(--dash-text-muted);
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.saving { color: #a78bfa; animation: pulse 1.5s ease infinite; }
+@keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.5 } }
+
+/* ── Links list ──────────────────────────────────────── */
+.linksList { display: flex; flex-direction: column; gap: 8px; }
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--dash-surface);
+  border: 1px solid var(--dash-border);
+  border-radius: 14px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  user-select: none;
+}
+.linkItem:hover { border-color: rgba(124,106,255,0.25); }
+
+.linkItemDragging {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  border-color: rgba(124,106,255,0.5) !important;
+  background: #1a1a2e;
+}
+
+/* ── Drag handle ─────────────────────────────────────── */
+.dragHandle {
+  background: none;
+  border: none;
+  color: var(--dash-text-muted);
+  cursor: grab;
+  font-size: 1.25rem;
+  padding: 4px;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.dragHandle:hover { opacity: 0.9; cursor: grab; }
+.dragHandle:active { cursor: grabbing; }
+
+/* ── Link display ────────────────────────────────────── */
+.linkIcon { font-size: 1.5rem; width: 32px; text-align: center; flex-shrink: 0; }
+
+.linkInfo { flex: 1; min-width: 0; }
+.linkTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--dash-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.linkUrl {
+  font-size: 0.775rem;
+  color: var(--dash-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.clickCount {
+  font-size: 0.8125rem;
+  color: var(--dash-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Action buttons ──────────────────────────────────── */
+.actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+.actionBtn {
+  background: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  opacity: 0.65;
+}
+.actionBtn:hover { background: rgba(255,255,255,0.08); opacity: 1; }
+.activeBtn { opacity: 0.9; }
+.hiddenBtn { opacity: 0.35; }
+.deleteBtn:hover { background: rgba(239,68,68,0.12) !important; }
+
+/* ── Modal ───────────────────────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+
+.modal {
+  background: #13131f;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { from { transform:translateY(20px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.modalHeader h2 { font-size: 1.125rem; font-weight: 700; color: var(--dash-text); }
+
+.modalForm {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalFooter {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+/* ── Icon grid ───────────────────────────────────────── */
+.iconGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconBtn:hover { background: rgba(124,106,255,0.15); border-color: rgba(124,106,255,0.3); }
+.iconBtnActive {
+  background: rgba(124,106,255,0.2) !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 10px rgba(124,58,237,0.3);
+}
+
+/* ── Input error ─────────────────────────────────────── */
+.inputError { border-color: rgba(239,68,68,0.4) !important; }
+.inputErrorMsg { font-size: 0.8rem; color: #f87171; }
+
+/* ── Toast ───────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #13131f;
+  border: 1px solid rgba(124,106,255,0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #a78bfa;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  z-index: 999;
+  animation: toastIn 0.3s ease;
+}
+@keyframes toastIn { from { transform:translateY(20px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+
+@media (max-width: 640px) {
+  .clickCount { display: none; }
+  .linkTitle { font-size: 0.875rem; }
+}

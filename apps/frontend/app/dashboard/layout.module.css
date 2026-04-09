@@ -1,0 +1,176 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 90;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Sidebar Logo ─────────────────────────────────────── */
+.sidebarLogo {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--dash-border);
+}
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logoIcon { font-size: 1.5rem; }
+.logoText {
+  font-size: 1.125rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Tenant card ──────────────────────────────────────── */
+.tenantCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  margin: 12px 12px 4px;
+  background: rgba(124,106,255,0.08);
+  border: 1px solid rgba(124,106,255,0.15);
+  border-radius: 14px;
+}
+.tenantAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.tenantName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--dash-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tenantSlug {
+  font-size: 0.75rem;
+  color: var(--dash-text-muted);
+}
+
+/* ── Navigation ───────────────────────────────────────── */
+.nav {
+  padding: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  color: var(--dash-text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+}
+.navItem:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--dash-text);
+}
+.navItemActive {
+  background: rgba(124,106,255,0.12) !important;
+  color: #a78bfa !important;
+  font-weight: 600;
+}
+.navItemActive::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: #7c3aed;
+  border-radius: 0 2px 2px 0;
+}
+
+.navIcon { font-size: 1rem; width: 20px; text-align: center; }
+
+/* ── Sidebar bottom ───────────────────────────────────── */
+.sidebarBottom {
+  padding: 12px;
+  border-top: 1px solid var(--dash-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.viewProfile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: var(--dash-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.viewProfile:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--dash-text);
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: rgba(239,68,68,0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  text-align: left;
+}
+.logoutBtn:hover {
+  background: rgba(239,68,68,0.08);
+  color: #f87171;
+}
+
+/* ── Mobile header ────────────────────────────────────── */
+.menuButton {
+  background: none;
+  border: none;
+  color: var(--dash-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  display: none;
+}
+.menuButton:hover { background: var(--dash-border); }
+
+.headerSlug {
+  font-size: 0.8125rem;
+  color: var(--dash-text-muted);
+}
+.headerSlug strong { color: var(--dash-text); }
+
+@media (max-width: 768px) {
+  .menuButton { display: flex; align-items: center; justify-content: center; }
+}
