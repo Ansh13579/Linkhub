@@ -178,7 +178,7 @@ const TRAFFIC_SOURCES = [
 const COUNTRIES = ['US', 'UK', 'CA', 'AU', 'IN', 'DE', 'FR', 'BR', 'JP', 'MX'];
 const DEVICES = ['mobile', 'mobile', 'mobile', 'desktop', 'tablet']; // 60% mobile
 
-function weightedRandom(items: { weight: number }[]) {
+function weightedRandom<T extends { weight: number }>(items: T[]): T {
   const total = items.reduce((sum, item) => sum + item.weight, 0);
   let random = Math.random() * total;
   for (const item of items) {
@@ -274,7 +274,7 @@ async function seed() {
         const hour = gaussianHour();
         clickDate.setHours(hour, faker.number.int({ min: 0, max: 59 }), 0, 0);
 
-        const source = weightedRandom(TRAFFIC_SOURCES) as { source: string };
+        const source = weightedRandom(TRAFFIC_SOURCES);
         const country = faker.helpers.arrayElement(COUNTRIES);
         const device = faker.helpers.arrayElement(DEVICES);
         // Weight links by position (first links get more clicks)
