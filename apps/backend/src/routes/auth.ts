@@ -33,10 +33,11 @@ router.post('/register', async (req: Request, res: Response) => {
       return res.status(409).json({ error: 'Email already registered' });
     }
 
-    // Create tenant
+    // Create tenant with default avatar
+    const defaultAvatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${slug}`;
     const tenantResult = await query(
-      `INSERT INTO tenants (slug, name) VALUES ($1, $2) RETURNING id, slug, name, created_at`,
-      [slug, name]
+      `INSERT INTO tenants (slug, name, avatar_url) VALUES ($1, $2, $3) RETURNING id, slug, name, created_at`,
+      [slug, name, defaultAvatarUrl]
     );
     const tenant = tenantResult[0];
 

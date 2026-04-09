@@ -286,9 +286,7 @@ export default function SettingsPage() {
                       <input type="file" accept="image/jpeg, image/png, image/webp" style={{ display: 'none' }} onChange={handleImageUpload} />
                       📸 Upload Image
                     </label>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--dash-text-muted)' }}>OR link from URL below:</span>
                   </div>
-                  <input id="profile-avatar" type="text" className="form-input" value={profile.avatar_url} onChange={e => setProfile((p: any) => ({ ...p, avatar_url: e.target.value }))} placeholder="https://..." />
                 </div>
                 <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '13px' }} onClick={saveProfile} disabled={saving}>
                   {saving ? 'Saving...' : '💾 Save Profile'}
